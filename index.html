@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="STARBel: joyas y accesorios elegantes y delicados. Brilla con tu propia esencia.">
+<title>STARBel | Brilla con tu propia esencia</title>
+<style>
+:root{
+  --negro:#171513; --taupe:#8B8178; --dorado:#C5A253; --crema:#F8F3E9;
+  --champagne:#DCC89A; --nude:#D9B6AD; --blanco:#FFFEFB; --texto:#292622;
+  --linea:#ded2bf; --sombra:0 18px 45px rgba(35,27,17,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--crema);color:var(--texto);font-family:Arial,Helvetica,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button,.btn{cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:3px;background:var(--negro);color:var(--crema);font-weight:700;letter-spacing:.035em;transition:transform .2s,background .2s,box-shadow .2s}
+button:hover,.btn:hover{background:var(--taupe);transform:translateY(-2px);box-shadow:0 8px 18px #17151320}
+.topbar{background:var(--negro);color:var(--champagne);text-align:center;padding:8px 12px;font-size:.72rem;letter-spacing:.17em}
+header{position:sticky;top:0;z-index:10;background:#f8f3e9f2;backdrop-filter:blur(12px);border-bottom:1px solid var(--linea)}
+.nav{max-width:1200px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:Georgia,'Times New Roman',serif;font-size:1.8rem;font-weight:bold;letter-spacing:.1em;color:var(--negro)}
+.brand span{color:var(--dorado)}
+.brand-logo{display:flex;align-items:center;min-width:150px;min-height:48px}
+.brand-logo img{display:block;width:175px;height:48px;object-fit:contain}
+nav{display:flex;gap:21px;flex-wrap:wrap;align-items:center;font-size:.88rem}
+nav a{padding:7px 0;position:relative}
+nav a:after{content:"";position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--dorado);transition:width .2s}
+nav a:hover:after{width:100%}
+.menu-btn{display:none}
+.hero{max-width:1200px;margin:auto;padding:66px 24px 78px;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.eyebrow{color:#92712d;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;font-weight:bold}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:500;line-height:1.15}
+h1{font-size:clamp(2.8rem,6vw,5.5rem);margin:14px 0 18px;color:var(--negro);letter-spacing:-.035em}
+h1 em{font-weight:400;color:#9b7c3e}
+.hero p{max-width:530px;color:#615950;font-size:1.04rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.btn-outline{background:transparent;color:var(--negro);border-color:var(--taupe)}
+.btn-outline:hover{color:var(--crema)}
+.hero-art{min-height:450px;position:relative;overflow:hidden;background:linear-gradient(145deg,#e7d8bd,#f7f0e4 55%,#d8c0a0);display:flex;align-items:center;justify-content:center;border-radius:48% 48% 4px 4px;box-shadow:var(--sombra)}
+.hero-art:before{content:"";position:absolute;width:68%;height:82%;border:1px solid #8b8178a8;border-radius:48% 48% 5% 5%;transform:rotate(11deg)}
+.hero-art:after{content:"";position:absolute;width:52%;height:70%;border:1px solid #c5a253c9;border-radius:48% 48% 5% 5%;transform:rotate(-12deg)}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.hero-image-missing .hero-photo{display:none}
+.section{padding:78px 24px}
+.section-inner{max-width:1120px;margin:auto}
+.section-head{text-align:center;max-width:700px;margin:0 auto 38px}
+.section-head h2{font-size:clamp(2rem,4vw,3.1rem);margin:9px 0 13px;color:var(--negro)}
+.section-head p{color:#655d53}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{background:var(--blanco);box-shadow:var(--sombra);padding:22px;border:1px solid #e8dfd1;border-radius:5px;transition:transform .22s,box-shadow .22s}
+.card:hover{transform:translateY(-4px);box-shadow:0 22px 48px #231b111c}
+.card h3{font-size:1.45rem;margin:12px 0 8px;color:var(--negro)}
+.product-art{height:220px;background:linear-gradient(140deg,#e6d9c7,#f7f0e6);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:3px}
+.product-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.image-hint{display:none;position:absolute;z-index:3;bottom:7px;left:7px;right:7px;padding:5px 7px;background:#fffeebd9;color:#54462c;text-align:center;font:12px Arial,sans-serif;border:1px dashed #9b7c3e}
+.image-missing .image-hint{display:block}
+.product-art:before{content:"";width:95px;height:95px;border:5px double var(--dorado);border-radius:50%;box-shadow:0 5px 14px #9a7a3940}
+.product-art.earrings:before{width:34px;height:72px;border-radius:50%;box-shadow:52px 0 0 0 var(--champagne)}
+.product-art.bracelet:before{width:125px;height:125px;border-width:7px}
+.product-art.necklace:before{width:120px;height:140px;border-radius:50% 50% 40% 40%;border-top-color:transparent}
+.tag{display:inline-block;color:#856627;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:bold;margin-top:14px}
+.price{font-weight:bold;color:#8b6a27;font-size:1.1rem;margin-top:12px}
+.note{font-size:.82rem;color:#796f63}
+.tinted{background:#eee5d7}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-grid h2{font-size:clamp(2rem,4vw,3rem)}
+.about-panel{background:var(--negro);color:var(--crema);padding:34px;border-radius:5px;box-shadow:var(--sombra)}
+.about-panel h2{font-size:2.5rem;color:var(--champagne)}
+.about-panel p{color:#e5dccc}
+.values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.value{padding:16px 14px;background:linear-gradient(145deg,#fffdf8,#f0e4d1);border:1px solid #d8c08b;border-top:3px solid var(--dorado);border-radius:3px;min-height:135px;display:flex;flex-direction:column;justify-content:center;gap:7px;box-shadow:0 4px 12px #0000000d}
+.value .value-number{font-size:.72rem;letter-spacing:.18em;color:#9b762f;font-weight:bold}
+.value strong{display:block;font-family:Georgia,serif;font-size:1.12rem;color:var(--negro)}
+.value span:not(.value-number){font-size:.84rem;color:#62584d;line-height:1.5}
+.foda{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.foda .card{border-top:3px solid var(--dorado)}
+.foda h3{margin-top:0}
+.promo{background:var(--negro);color:var(--crema)}
+.promo .section-head h2{color:var(--crema)}
+.promo .section-head p{color:#d4c8b6}
+.promo .card{background:#27231e;color:var(--crema);border:1px solid #4c4337;box-shadow:none}
+.promo .card h3{color:var(--champagne)}
+.promo .card p{color:#d7cbb9}
+.promo .tag{color:var(--champagne)}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.gallery-item{min-height:190px;background:linear-gradient(135deg,#e5d6bd,#faf5ec);display:flex;align-items:center;justify-content:center;text-align:center;padding:15px;color:#7a6337;font-family:Georgia,serif;font-size:1.15rem;border:1px solid #e5d9c7;border-radius:4px}
+.photo-slot{position:relative;overflow:hidden}
+.photo-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo-slot .image-hint{display:none}
+.photo-slot.image-missing .image-hint{display:block}
+.testimonials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.quote{background:var(--blanco);padding:24px;border-left:3px solid var(--nude);box-shadow:var(--sombra);border-radius:2px}
+.quote p{font-family:Georgia,serif;font-size:1.08rem}
+.quote small{color:#796e61}
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px}
+.contact-info{background:var(--negro);color:var(--crema);padding:30px;border-radius:4px}
+.contact-info h3{font-size:1.8rem;color:var(--champagne)}
+.contact-info p{color:#ded2c1}
+form{background:var(--blanco);padding:28px;box-shadow:var(--sombra);border:1px solid #e8dfd1;border-radius:4px}
+label{display:block;font-size:.86rem;font-weight:bold;margin:12px 0 5px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d8cdbc;background:#fffdf8;color:var(--texto);border-radius:3px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--dorado);box-shadow:0 0 0 3px #c5a25320}
+textarea{min-height:100px;resize:vertical}
+.form-status{margin-top:12px;font-size:.9rem;color:#5c6d42}
+.location-box{margin-top:18px;padding:14px;background:#fffaf3;color:#262321;border:1px solid #d8c7a6;border-radius:3px}
+.location-box h4{margin:0 0 8px;color:#262321}
+.location-box p{font-size:.9rem;color:#5c5145}
+.live-map{width:100%;height:240px;background:#eee6da;margin-top:10px}
+.live-map iframe{width:100%;height:100%;border:0}
+.map-note{font-size:.78rem;color:#746b61}
+.chat{position:fixed;bottom:18px;right:18px;z-index:20}
+.chat-toggle{border-radius:50px;background:var(--dorado);color:var(--negro);box-shadow:var(--sombra)}
+.chatbox{display:none;position:absolute;bottom:58px;right:0;width:290px;background:var(--blanco);box-shadow:var(--sombra);border:1px solid #e0d3bd;border-radius:5px;overflow:hidden}
+.chatbox.open{display:block}
+.chat-head{padding:13px;background:var(--negro);color:var(--champagne);font-weight:bold}
+.chat-body{padding:14px;font-size:.9rem}
+.chat-body button{margin:4px 0;padding:8px 10px;font-size:.8rem}
+footer{background:#100f0d;color:#d8cbb8;padding:32px 22px;text-align:center}
+footer .brand{color:var(--crema)}
+footer p{font-size:.85rem}
+.disclaimer{font-size:.78rem;color:#7b7166;margin-top:12px}
+@media(max-width:900px){
+ .nav{align-items:center}.menu-btn{display:block;padding:8px 12px}
+ nav{display:none;position:absolute;top:74px;left:0;right:0;background:var(--crema);padding:18px 24px;border-bottom:1px solid #ddd;flex-direction:column;align-items:flex-start;gap:10px}
+ nav.open{display:flex}
+ .hero{grid-template-columns:1fr;gap:30px;padding-top:42px}.hero-art{min-height:350px}
+ .cards,.testimonials{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .about-grid,.contact-grid{grid-template-columns:1fr}
+ .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+ .cards,.testimonials,.foda,.values{grid-template-columns:1fr}
+ .hero-art{min-height:280px}
+ .section{padding:55px 17px}
+ .nav{padding:12px 17px}
+ .product-art{height:200px}
+ .about-panel,form{padding:22px}
+ .gallery-item{min-height:155px}
+ .brand-logo img{width:145px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">JOYAS Y ACCESORIOS PARA BRILLAR CON TU PROPIA ESENCIA</div>
+<header>
+ <div class="nav">
+  <a class="brand brand-logo" href="#inicio" aria-label="Logo de STARBEL">
+   <img src="imagenes/logo.png" alt="Logo STARBEL">
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+  <nav id="nav">
+   <a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#catalogo">Catálogo</a><a href="#promociones">Promociones</a><a href="#galeria">Galería</a><a href="#contacto">Contacto</a>
+  </nav>
+ </div>
+</header>
+<main>
+<section class="hero" id="inicio">
+ <div>
+  <div class="eyebrow">Elegancia en cada detalle</div>
+  <h1>Brilla con tu <em>propia esencia.</em></h1>
+  <p>En STARBEL creemos que cada persona tiene un estilo único. Descubre joyas y accesorios delicados, elegantes y atractivos para acompañarte en cada ocasión.</p>
+  <div class="actions"><a class="btn" href="#catalogo">Explorar catálogo</a><a class="btn btn-outline" href="#nosotros">Conócenos</a></div>
+  <p class="note">Diseños seleccionados para complementar tu personalidad.</p>
+ </div>
+ <div class="hero-art" role="img" aria-label="Imagen principal de joyería STARBEL">
+  <img class="hero-photo" src="imagenes/bannerstarbel.jpeg" alt="Banner de joyas STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('hero-image-missing')">
+ </div>
+</section>
+
+<section class="section tinted" id="nosotros">
+ <div class="section-inner about-grid">
+  <div>
+   <div class="eyebrow">Nuestra historia</div>
+   <h2>Detalles que cuentan tu historia.</h2>
+   <p>STARBEL nace como una iniciativa para ofrecer joyería que ayude a las personas a complementar su estilo y expresar su personalidad. Queremos presentar productos atractivos y accesibles para diferentes gustos y ocasiones, utilizando medios digitales para dar a conocer nuestra marca.</p>
+   <h3>Nuestra misión</h3><p>Ofrecer joyas y accesorios elegantes, delicados y atractivos, brindando diferentes opciones para que nuestros clientes complementen su estilo y expresen su personalidad, con una atención responsable y cercana.</p>
+   <h3>Nuestra visión</h3><p>Ser una marca reconocida por sus diseños elegantes, su creatividad y su presencia digital, llegando a más clientes y creciendo dentro del mercado de accesorios.</p>
+  </div>
+  <div class="about-panel">
+   <div class="eyebrow">Lo que nos representa</div><h2>Nuestros valores</h2>
+   <p>Los principios que guían nuestra marca y la forma en que queremos atender a nuestros clientes.</p>
+   <div class="values">
+    <div class="value"><span class="value-number">01</span><strong>Elegancia</strong><span>Buscamos transmitir una imagen sofisticada y delicada mediante nuestros productos.</span></div>
+    <div class="value"><span class="value-number">02</span><strong>Calidad</strong><span>Procuramos ofrecer productos atractivos y adecuados para nuestros clientes.</span></div>
+    <div class="value"><span class="value-number">03</span><strong>Creatividad</strong><span>Buscamos presentar diseños diferentes y llamativos.</span></div>
+    <div class="value"><span class="value-number">04</span><strong>Responsabilidad</strong><span>Nos comprometemos a brindar una buena atención y cumplir con nuestros clientes.</span></div>
+    <div class="value"><span class="value-number">05</span><strong>Respeto</strong><span>Tratamos a nuestros clientes de manera amable y respetuosa.</span></div>
+    <div class="value"><span class="value-number">06</span><strong>Innovación</strong><span>Utilizamos herramientas digitales para promocionar y presentar nuestros productos.</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="catalogo">
+ <div class="section-inner">
+  <div class="section-head"><div class="eyebrow">Encuentra tu favorito</div><h2>Catálogo de productos</h2><p>Descubre nuestras joyas y elige el detalle que mejor combine con tu estilo.</p></div>
+  <div class="cards">
+   <article class="card"><div class="product-art necklace"><img class="product-photo" src="imagenes/argolla.jpeg" alt="Argollas doradas STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"></div><span class="tag">Argolla </span><h3>Argollas doradas</h3><p>Argollas de acabado dorado y estilo clásico, ideales para complementar tus atuendos diarios o darle un toque elegante a una ocasión especial.</p><div class="price">Precio: $1</div><p class="note">Promoción: envío gratis en la compra de joyas participantes.</p></article>
+   <article class="card"><div class="product-art bracelet"><img class="product-photo" src="imagenes/corazon.jpeg" alt="Joya con diseño de corazón STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"></div><span class="tag">Argolla de Corazon</span><h3>Diseño de corazón</h3><p>Joya con detalle de corazón y apariencia delicada, una opción romántica para regalar o añadir un toque especial a tu estilo.</p><div class="price">Precio: $1</div><p class="note">Promoción: 15 % de descuento adicional al comprar el conjunto completo de pulsera, aretes y argollas.</p></article>
+   <article class="card"><div class="product-art earrings"><img class="product-photo" src="imagenes/negro.jpeg" alt="Aretes dorados con piedras negras STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"></div><span class="tag">Aretes Dorados</span><h3>Aretes dorados con piedras negras</h3><p>Aretes dorados con piedras negras brillantes y diseño decorativo. Una pieza llamativa que aporta un toque sofisticado a looks casuales o formales.</p><div class="price">Precio: $1.25</div><p class="note">Una opción para quienes prefieren accesorios elegantes y llamativos.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section promo" id="promociones">
+ <div class="section-inner">
+  <div class="section-head"><div class="eyebrow">Un detalle especial</div><h2>Promociones STARBEL</h2><p>Ofertas pensadas para dar a conocer nuestras colecciones e incentivar las compras.</p></div>
+  <div class="cards">
+   <article class="card"><span class="tag">Arenas de Antaño</span><h3>Envío gratis</h3><p>En la compra de joyas de esta colección.</p></article>
+   <article class="card"><span class="tag">Evadorada</span><h3>15 % de descuento adicional</h3><p>Al comprar el conjunto completo de pulsera, aretes y argollas.</p></article>
+   <article class="card"><span class="tag">Oropardis</span><h3>Detalles que destacan</h3><p>Promoción de aretes dorados con piedras negras.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="diferenciacion">
+ <div class="section-inner">
+  <div class="section-head"><div class="eyebrow">Nuestra propuesta</div><h2>¿Qué hace especial a STARBEL?</h2><p>Queremos diferenciarnos con una propuesta coherente y una atención cercana.</p></div>
+  <div class="foda">
+   <article class="card"><h3>Fortalezas</h3><p>Diseños elegantes y delicados, variedad de accesorios, identidad visual sofisticada, promociones y un eslogan fácil de recordar.</p></article>
+   <article class="card"><h3>Oportunidades</h3><p>Promoción en redes sociales, nuevas colecciones, crecimiento mediante el portal web y adaptación a tendencias de joyería.</p></article>
+   <article class="card"><h3>Debilidades</h3><p>Marca nueva, poco reconocimiento inicial, presupuesto limitado y poca experiencia en el mercado.</p></article>
+   <article class="card"><h3>Amenazas</h3><p>Competencia, productos similares, cambios en las tendencias y posibles aumentos de precios.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section tinted" id="galeria">
+ <div class="section-inner">
+  <div class="section-head"><div class="eyebrow">Inspiración</div><h2>Galería STARBEL</h2><p></p></div>
+  <div class="gallery">
+   <div class="gallery-item photo-slot"><img src="imagenes/pulsera 1.png" alt="Fotografía de joyas STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"><span class="image-hint">galeria-1.jpg</span></div>
+   <div class="gallery-item photo-slot"><img src="imagenes/pulsera 2.png" alt="Colección de joyas doradas STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"><span class="image-hint">galeria-2.jpg</span></div>
+   <div class="gallery-item photo-slot"><img src="imagenes/Collar.png" alt="Empaques de STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"><span class="image-hint">galeria-3.jpg</span></div>
+   <div class="gallery-item photo-slot"><img src="imagenes/Pareja.png" alt="Accesorios STARBEL" onerror="this.style.display='none';this.parentElement.classList.add('image-missing')"><span class="image-hint">galeria-4.jpg</span></div>
+  </div>
+  <p class="disclaimer"></p>
+ </div>
+</section>
+
+<section class="section" id="opiniones">
+ <div class="section-inner">
+  <div class="section-head"><div class="eyebrow">Experiencia de compra</div><h2>Lo que dicen nuestros clientes</h2><p></p></div>
+  <div class="testimonials">
+   <div class="quote"><p>“Me encantó la presentación delicada de los accesorios.”</p><small></small></div>
+   <div class="quote"><p>“Encontré un estilo que combina con mi personalidad.”</p><small></small></div>
+   <div class="quote"><p>“La atención amable hace la diferencia.”</p><small></small></div>
+  </div>
+ </div>
+</section>
+
+<section class="section tinted" id="contacto">
+ <div class="section-inner">
+  <div class="section-head"><div class="eyebrow">Estamos para ayudarte</div><h2>Contacto y redes sociales</h2><p>¿Tienes una consulta sobre nuestras colecciones? Escríbenos mediante el formulario de muestra.</p></div>
+  <div class="contact-grid">
+   <div class="contact-info">
+    <h3>Conversemos</h3><p>En STARBEL queremos brindarte una atención responsable, cercana y respetuosa.</p>
+    <p><strong>Correo:</strong> agregar correo oficial</p><p><strong>Teléfono:</strong> agregar número de contacto</p>
+    <p><strong>Redes:</strong> agregar enlaces oficiales de Instagram, Facebook o TikTok.</p>
+    <div class="location-box">
+      <h4>Ubicación de STARBEL</h4>
+      <p id="locationStatus">Ubicación de muestra: Centro de San Salvador, El Salvador.</p>
+      <div id="liveMap" class="live-map" aria-label="Mapa de ubicación de muestra"></div>
+      <p class="map-note">Ubicación ficticia para la presentación del proyecto. Puedes cambiarla por la dirección que prefieras.</p>
+    </div>
+   </div>
+   <form id="contactForm">
+    <h3>Envíanos un mensaje</h3>
+    <label for="nombre">Nombre</label><input id="nombre" name="nombre" required placeholder="Tu nombre">
+    <label for="correo">Correo electrónico</label><input id="correo" name="correo" type="email" required placeholder="tucorreo@ejemplo.com">
+    <label for="motivo">¿En qué podemos ayudarte?</label><select id="motivo" name="motivo"><option>Consulta sobre productos</option><option>Promociones</option><option>Pedidos y entregas</option><option>Otra consulta</option></select>
+    <label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" required placeholder="Escribe tu consulta aquí..."></textarea>
+    <button type="submit">Preparar mensaje</button><div class="form-status" id="formStatus" aria-live="polite"></div>
+    <p class="disclaimer"></p>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+<footer>
+ <a class="brand" href="#inicio">STAR<span>BEL</span></a>
+ <p>“Brilla con tu propia esencia”.</p><p>Joyas y accesorios elegantes y delicados.</p>
+ <p>© <span id="year"></span> STARBEL </p>
+</footer>
+<div class="chat">
+ <div class="chatbox" id="chatbox"><div class="chat-head">Chat STARBEL</div><div class="chat-body"><p>¡Hola! Gracias por visitar STARBEL. ¿Qué te gustaría consultar?</p><button type="button" data-answer="Puedes revisar las colecciones en la sección Catálogo.">Ver catálogo</button><button type="button" data-answer="Consulta las promociones de Arenas de Antaño, Evadorada y Oropardis.">Ver promociones</button><p id="chatReply" aria-live="polite"></p></div></div>
+ <button class="chat-toggle" id="chatToggle" type="button">Chat</button>
+</div>
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const nav=document.getElementById('nav');
+menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById('contactForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=document.getElementById('nombre').value.trim();
+ document.getElementById('formStatus').textContent=`Gracias, ${name}. El formulario funciona como demostración, pero todavía no envía el mensaje.`;
+});
+const liveMap=document.getElementById('liveMap');
+const fakeLat=13.6989, fakeLon=-89.1914, delta=0.008;
+liveMap.innerHTML=`<iframe title="Mapa de ubicación de muestra" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=${fakeLon-delta}%2C${fakeLat-delta}%2C${fakeLon+delta}%2C${fakeLat+delta}&layer=mapnik&marker=${fakeLat}%2C${fakeLon}"></iframe>`;
+const chatbox=document.getElementById('chatbox');
+document.getElementById('chatToggle').addEventListener('click',()=>chatbox.classList.toggle('open'));
+document.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>document.getElementById('chatReply').textContent=b.dataset.answer));
+</script>
+</body>
+</html>
